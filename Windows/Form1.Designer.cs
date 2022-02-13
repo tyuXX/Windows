@@ -40,7 +40,8 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.time = new System.Windows.Forms.Timer(this.components);
             this.control = new System.Windows.Forms.Timer(this.components);
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.ComboBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -71,7 +72,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 62);
+            this.button1.Location = new System.Drawing.Point(12, 89);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(66, 25);
             this.button1.TabIndex = 3;
@@ -121,17 +122,37 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(162, 67);
+            this.textBox5.FormattingEnabled = true;
+            this.textBox5.Items.AddRange(new object[] {
+            "1",
+            "10",
+            "100",
+            "1000",
+            "5",
+            "50",
+            "500"});
+            this.textBox5.Location = new System.Drawing.Point(162, 64);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
+            this.textBox5.Size = new System.Drawing.Size(100, 21);
             this.textBox5.TabIndex = 6;
-            this.textBox5.Text = "Simulation Speed";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(12, 66);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(68, 17);
+            this.checkBox1.TabIndex = 7;
+            this.checkBox1.Text = "Multitype";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(274, 404);
+            this.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.ClientSize = new System.Drawing.Size(274, 271);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
@@ -139,6 +160,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form1";
             this.Text = "Virus Simulater";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -160,7 +182,8 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Timer time;
         private System.Windows.Forms.Timer control;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.ComboBox textBox5;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

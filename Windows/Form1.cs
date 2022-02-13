@@ -14,6 +14,7 @@ namespace Windows
 {
     public partial class Form1 : Form
     {
+        Random rng = new Random();
         BigInteger virus = 0;
         BigInteger stvirus = 0;
         BigInteger antivirus = 0;
@@ -21,6 +22,7 @@ namespace Windows
         BigInteger comhealt = 0;
         BigInteger infected = 0;
         BigInteger timer = 0;
+        short virustypes = 0;
         int speed = 0;
         bool work = false;
         public Form1()
@@ -35,6 +37,11 @@ namespace Windows
 
         private void button1_Click(object sender, EventArgs e)
         {
+            virustypes = 1;
+            if (checkBox1.Checked)
+            {
+                virustypes = Convert.ToInt16(rng.Next(1,5));
+            }
             virust.Enabled = true;
             updatetick.Enabled = true;
             control.Enabled = true;
@@ -51,7 +58,8 @@ namespace Windows
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            virus *= 2;
+            virus *= 2 * virustypes;
+            antivirus -= (virus / antivirus) / antiviruspotent;
         }
 
         private void antivirust_Tick(object sender, EventArgs e)
@@ -67,7 +75,7 @@ namespace Windows
                 antivirust.Enabled = true;
             }
             infected = (virus / antiviruspotent) / comhealt;
-            label1.Text = "Status:\nVirus Count:" + virus + "\nAnti-Virus Count:" + antivirus + "\nComputer Status:\nInfected parts:" + infected + "\nComputer Healt:" + comhealt + "\nTime:" + timer + "s";
+            label1.Text = "Status:\nVirus Count:" + virus + "\nAnti-Virus Count:" + antivirus + "\nComputer Status:\nInfected parts:" + infected + "\nComputer Healt:" + comhealt + "\nVirus Types:" + virustypes + "\nTime:" + timer + "s";
         }
 
         private void time_Tick(object sender, EventArgs e)
