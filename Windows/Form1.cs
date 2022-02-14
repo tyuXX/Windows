@@ -17,12 +17,14 @@ namespace Windows
     {
         public int id;
         public int type;
+        public int life;
         public bool veteran;
     }
     public struct Antivirus
     {
         public int id;
         public int knowntypes;
+        public int life;
         public bool veteran;
     }
     public partial class Form1 : Form
@@ -49,7 +51,22 @@ namespace Windows
         {
             
         }
-
+        private Virus genvir(int i)
+        {
+            Virus vir = new Virus();
+            vir.id = i;
+            vir.type = rng.Next(1, virustypes);
+            vir.life = 0;
+            return vir;
+        }
+        private Antivirus genantivir(int i)
+        {
+            Antivirus antivir = new Antivirus();
+            antivir.id = i;
+            antivir.knowntypes = rng.Next(1, virustypes);
+            antivir.life = 0;
+            return antivir;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             virustypes = 1;
@@ -71,6 +88,7 @@ namespace Windows
                     Virus vir = new Virus();
                     vir.id = i;
                     vir.type = rng.Next(1, virustypes);
+                    vir.life = 0;
                     evirus[i] = vir;
                     i++;
                 }
@@ -80,6 +98,8 @@ namespace Windows
                     Antivirus antivir = new Antivirus();
                     antivir.id = i;
                     antivir.knowntypes = rng.Next(1, virustypes);
+                    antivir.life = 0;
+                    eantivirus[i] = antivir;
                     i++;
                 }
             }
@@ -93,14 +113,28 @@ namespace Windows
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            virus *= 2 * virustypes;
-            antivirus -= (virus / antivirus) / antiviruspotent;
+            if (checkBox2.Checked)
+            {
+                int ii = evirus.Length;
+                while (ii > -1)
+                {
+                    virus += evirus[ii].type;
+                    evirus[ii].life += 1;
+                    ii--;
+                }
+                int i = ((int)virus) - evirus.Length;
+            }
+            else
+            {
+                virus *= 2 * virustypes;
+                antivirus -= (virus / antivirus) / antiviruspotent;
+            }
         }
 
         private void antivirust_Tick(object sender, EventArgs e)
         {
             virus -= antivirus * antiviruspotent;
-            antivirus *= (antivirus * antiviruspotent);
+            antivirus += (antivirus * antiviruspotent);
         }
 
         private void updatetick_Tick(object sender, EventArgs e)
