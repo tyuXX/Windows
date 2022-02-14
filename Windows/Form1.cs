@@ -9,12 +9,27 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Windows.Form1;
 
 namespace Windows
 {
+    public struct Virus
+    {
+        public int id;
+        public int type;
+        public bool veteran;
+    }
+    public struct Antivirus
+    {
+        public int id;
+        public int knowntypes;
+        public bool veteran;
+    }
     public partial class Form1 : Form
     {
         Random rng = new Random();
+        Virus[] evirus;
+        Antivirus[] eantivirus;
         BigInteger virus = 0;
         BigInteger stvirus = 0;
         BigInteger antivirus = 0;
@@ -40,17 +55,37 @@ namespace Windows
             virustypes = 1;
             if (checkBox1.Checked)
             {
-                virustypes = Convert.ToInt16(rng.Next(1,5));
+                virustypes = Convert.ToInt16(rng.Next(1, 5));
             }
-            virust.Enabled = true;
-            updatetick.Enabled = true;
-            control.Enabled = true;
             virus = BigInteger.Parse(textBox1.Text);
             stvirus = BigInteger.Parse(textBox1.Text);
             antivirus = BigInteger.Parse(textBox2.Text);
             antiviruspotent = BigInteger.Parse(textBox3.Text);
             comhealt = BigInteger.Parse(textBox4.Text);
             speed = Convert.ToInt32(textBox5.Text);
+            if (checkBox2.Checked)
+            {
+                int i = 0;
+                while(i < virus)
+                {
+                    Virus vir = new Virus();
+                    vir.id = i;
+                    vir.type = rng.Next(1, virustypes);
+                    evirus[i] = vir;
+                    i++;
+                }
+                i = 0;
+                while (i < antivirus)
+                {
+                    Antivirus antivir = new Antivirus();
+                    antivir.id = i;
+                    antivir.knowntypes = rng.Next(1, virustypes);
+                    i++;
+                }
+            }
+            virust.Enabled = true;
+            updatetick.Enabled = true;
+            control.Enabled = true;
             work = true;
             virust.Interval *= speed;
             antivirust.Interval *= speed;
