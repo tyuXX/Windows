@@ -56,7 +56,7 @@ namespace Windows
             Virus vir = new Virus();
             vir.id = i;
             vir.type = rng.Next(1, virustypes);
-            vir.life = 0;
+            vir.life = 1;
             return vir;
         }
         private Antivirus genantivir(int i)
@@ -64,77 +64,129 @@ namespace Windows
             Antivirus antivir = new Antivirus();
             antivir.id = i;
             antivir.knowntypes = rng.Next(1, virustypes);
-            antivir.life = 0;
+            antivir.life = 1;
             return antivir;
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            virustypes = 1;
-            if (checkBox1.Checked)
+            try
             {
-                virustypes = Convert.ToInt16(rng.Next(1, 5));
+                virustypes = 1;
+                if (checkBox1.Checked)
+                {
+                    virustypes = Convert.ToInt16(rng.Next(1, 5));
+                }
+                virus = BigInteger.Parse(textBox1.Text);
+                stvirus = BigInteger.Parse(textBox1.Text);
+                antivirus = BigInteger.Parse(textBox2.Text);
+                antiviruspotent = BigInteger.Parse(textBox3.Text);
+                comhealt = BigInteger.Parse(textBox4.Text);
+                speed = Convert.ToInt32(textBox5.Text);
+                if (checkBox2.Checked)
+                {
+                    int i = 0;
+                    while (i < virus)
+                    {
+                        Virus vir = new Virus();
+                        vir.id = i;
+                        vir.type = rng.Next(1, virustypes);
+                        vir.life = 1;
+                        evirus[i] = vir;
+                        i++;
+                    }
+                    i = 0;
+                    while (i < antivirus)
+                    {
+                        Antivirus antivir = new Antivirus();
+                        antivir.id = i;
+                        antivir.knowntypes = rng.Next(1, virustypes);
+                        antivir.life = 1;
+                        eantivirus[i] = antivir;
+                        i++;
+                    }
+                }
+                virust.Enabled = true;
+                updatetick.Enabled = true;
+                control.Enabled = true;
+                work = true;
+                virust.Interval *= speed;
+                antivirust.Interval *= speed;
             }
-            virus = BigInteger.Parse(textBox1.Text);
-            stvirus = BigInteger.Parse(textBox1.Text);
-            antivirus = BigInteger.Parse(textBox2.Text);
-            antiviruspotent = BigInteger.Parse(textBox3.Text);
-            comhealt = BigInteger.Parse(textBox4.Text);
-            speed = Convert.ToInt32(textBox5.Text);
-            if (checkBox2.Checked)
+            catch (Exception ex)
             {
-                int i = 0;
-                while(i < virus)
-                {
-                    Virus vir = new Virus();
-                    vir.id = i;
-                    vir.type = rng.Next(1, virustypes);
-                    vir.life = 0;
-                    evirus[i] = vir;
-                    i++;
-                }
-                i = 0;
-                while (i < antivirus)
-                {
-                    Antivirus antivir = new Antivirus();
-                    antivir.id = i;
-                    antivir.knowntypes = rng.Next(1, virustypes);
-                    antivir.life = 0;
-                    eantivirus[i] = antivir;
-                    i++;
-                }
+                label1.Text = "There Has Been an error.\n Please Check all the textboxes\nSystem error:" + ex;
             }
-            virust.Enabled = true;
-            updatetick.Enabled = true;
-            control.Enabled = true;
-            work = true;
-            virust.Interval *= speed;
-            antivirust.Interval *= speed;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (checkBox2.Checked)
+            try
             {
-                int ii = evirus.Length;
-                while (ii > -1)
+                if (checkBox2.Checked)
                 {
-                    virus += evirus[ii].type;
-                    evirus[ii].life += 1;
-                    ii--;
+                    int ii = evirus.Length;
+                    while (ii > -1)
+                    {
+                        virus += evirus[ii].type + evirus[ii].life;
+                        evirus[ii].life += 1;
+                        ii--;
+                    }
+                    int i = ((int)virus) - evirus.Length;
+                    while (i < virus)
+                    {
+                        Virus vir = new Virus();
+                        vir.id = i;
+                        vir.type = rng.Next(1, virustypes);
+                        vir.life = 1;
+                        evirus[i] = vir;
+                        i++;
+                    }
                 }
-                int i = ((int)virus) - evirus.Length;
+                else
+                {
+                    virus *= 2 * virustypes;
+                    antivirus -= ((virus / antivirus) / antiviruspotent) / comhealt;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                virus *= 2 * virustypes;
-                antivirus -= (virus / antivirus) / antiviruspotent;
+                label1.Text = "There Has Been an error.\nSystem error:" + ex;
             }
         }
 
         private void antivirust_Tick(object sender, EventArgs e)
         {
-            virus -= antivirus * antiviruspotent;
-            antivirus += (antivirus * antiviruspotent);
+            try
+            {
+                if (checkBox2.Checked)
+                {
+                    int ii = eantivirus.Length;
+                    while (ii > -1)
+                    {
+                        antivirus += eantivirus[ii].life * antiviruspotent;
+                        evirus[ii].life += 1;
+                        ii--;
+                    }
+                    int i = ((int)virus) - evirus.Length;
+                    while (i < virus)
+                    {
+                        Antivirus vir = new Antivirus();
+                        vir.id = i;
+                        vir.life = 1;
+                        eantivirus[i] = vir;
+                        i++;
+                    }
+                }
+                else
+                {
+                    virus -= antivirus * antiviruspotent;
+                    antivirus += (antivirus * antiviruspotent);
+                }
+            }
+            catch (Exception ex)
+            {
+                label1.Text = "There Has Been an error.\nSystem error:" + ex;
+            }
         }
 
         private void updatetick_Tick(object sender, EventArgs e)
@@ -204,7 +256,16 @@ namespace Windows
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            menuStrip1.Visible = false;
+        }
 
+        private void autoDoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "1000";
+            textBox2.Text = "2";
+            textBox3.Text = "2";
+            textBox4.Text = "100";
+            textBox5.Text = "1000";
         }
     }
 }
