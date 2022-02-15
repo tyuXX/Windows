@@ -21,21 +21,48 @@ namespace VirusSim
 
         private void Army_Load(object sender, EventArgs e)
         {
-            for(int i = 25; i > 0; i++)
-            {
-                for(int ii = 0; i < former1.Length; i++)
-                {
-                    richTextBox1.Text += former1[ii];
-                    Thread.Sleep(100);
-                }
-                richTextBox1.Text += "\n";
-                Thread.Sleep(100);
-            }
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            assemble();
+            timer1.Enabled = false;
+        }
+        private void delone()
+        {
+            string[] text = richTextBox1.Lines;
+            for (int i = 0; i < 24; i++)
+            {
+                for(int ii = 0; ii < text[i].Length + 1; ii++)
+                {
+                    if(text[i][ii] == ' ')
+                    {
 
+                        text[i].Remove(ii);
+                    }
+                }
+            }
+        }
+        private void assemble()
+        {
+            for (int i = 24; i > 0; i--)
+            {
+                for (int ii = 0; ii < former1.Length; ii++)
+                {
+                    richTextBox1.Text += former1[ii];
+                }
+                richTextBox1.Text += "\n";
+            }
+            for (int ii = 0; ii < former1.Length; ii++)
+            {
+                richTextBox1.Text += former1[ii];
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            delone();
         }
     }
 }

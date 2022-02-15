@@ -32,12 +32,13 @@ namespace VirusSim
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 1;
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // richTextBox1
@@ -45,15 +46,22 @@ namespace VirusSim
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(473, 340);
+            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.richTextBox1.Size = new System.Drawing.Size(473, 330);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
+            // 
+            // timer2
+            // 
+            this.timer2.Enabled = true;
+            this.timer2.Interval = 1000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // Army
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(473, 340);
+            this.ClientSize = new System.Drawing.Size(473, 330);
             this.Controls.Add(this.richTextBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Army";
@@ -66,5 +74,6 @@ namespace VirusSim
         #endregion
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Timer timer2;
     }
 }
