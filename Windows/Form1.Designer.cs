@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,6 +48,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.devToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoDoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,7 +76,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(13, 173);
+            this.label1.Location = new System.Drawing.Point(14, 198);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 20);
@@ -85,7 +87,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.button1.Location = new System.Drawing.Point(13, 138);
+            this.button1.Location = new System.Drawing.Point(14, 162);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(88, 31);
@@ -175,6 +177,7 @@
             this.checkBox2.BackColor = System.Drawing.SystemColors.ControlDark;
             this.checkBox2.ForeColor = System.Drawing.Color.DarkRed;
             this.checkBox2.Location = new System.Drawing.Point(16, 110);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(130, 21);
             this.checkBox2.TabIndex = 8;
@@ -187,6 +190,7 @@
             this.checkBox3.BackColor = System.Drawing.SystemColors.ControlDark;
             this.checkBox3.ForeColor = System.Drawing.Color.DarkRed;
             this.checkBox3.Location = new System.Drawing.Point(216, 110);
+            this.checkBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(146, 21);
             this.checkBox3.TabIndex = 9;
@@ -200,7 +204,8 @@
             this.devToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(379, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(379, 30);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -209,16 +214,29 @@
             this.devToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.autoDoToolStripMenuItem});
             this.devToolStripMenuItem.Name = "devToolStripMenuItem";
-            this.devToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
+            this.devToolStripMenuItem.Size = new System.Drawing.Size(49, 26);
             this.devToolStripMenuItem.Text = "Dev";
             // 
             // autoDoToolStripMenuItem
             // 
             this.autoDoToolStripMenuItem.Name = "autoDoToolStripMenuItem";
             this.autoDoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.autoDoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.autoDoToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
             this.autoDoToolStripMenuItem.Text = "Auto do";
             this.autoDoToolStripMenuItem.Click += new System.EventHandler(this.autoDoToolStripMenuItem_Click);
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.checkBox4.ForeColor = System.Drawing.Color.DimGray;
+            this.checkBox4.Location = new System.Drawing.Point(16, 135);
+            this.checkBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(127, 21);
+            this.checkBox4.TabIndex = 11;
+            this.checkBox4.Text = "Show Simulator";
+            this.checkBox4.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
@@ -227,6 +245,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(379, 420);
+            this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
@@ -239,6 +258,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
@@ -271,6 +291,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem devToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autoDoToolStripMenuItem;
+        private System.Windows.Forms.CheckBox checkBox4;
     }
 }
 

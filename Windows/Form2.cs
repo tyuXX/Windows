@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace VirusSim
+namespace Windows
 {
     public partial class Army : Form
     {
@@ -38,7 +38,6 @@ namespace VirusSim
                 {
                     if(text[i][ii] == ' ')
                     {
-
                         text[i].Remove(ii);
                     }
                 }
@@ -58,6 +57,7 @@ namespace VirusSim
             {
                 richTextBox1.Text += former1[ii];
             }
+            timer2.Enabled = true;
         }
 
         private void timer2_Tick(object sender, EventArgs e)

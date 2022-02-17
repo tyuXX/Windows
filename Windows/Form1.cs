@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Windows.Form1;
+using static Windows.rntm;
 
 namespace Windows
 {
@@ -32,16 +32,6 @@ namespace Windows
         Random rng = new Random();
         Virus[] evirus;
         Antivirus[] eantivirus;
-        BigInteger virus = 0;
-        BigInteger stvirus = 0;
-        BigInteger antivirus = 0;
-        BigInteger antiviruspotent = 0;
-        BigInteger comhealt = 0;
-        BigInteger infected = 0;
-        BigInteger timer = 0;
-        short virustypes = 0;
-        int speed = 0;
-        bool work = false;
         public Form1()
         {
             InitializeComponent();
@@ -111,6 +101,11 @@ namespace Windows
                 work = true;
                 virust.Interval *= speed;
                 antivirust.Interval *= speed;
+                if (checkBox4.Checked)
+                {
+                    Form3 f3 = new Form3();
+                    f3.Show();
+                }
             }
             catch (Exception ex)
             {
